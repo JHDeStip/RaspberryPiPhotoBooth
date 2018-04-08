@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{26acc2da-7220-445f-8d55-5b3782b28084}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>ButtonListener.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ButtonListener.py" />
+    <Compile Include="Camera.py" />
+    <Compile Include="Colors.py" />
+    <Compile Include="Config.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Constants.py" />
+    <Compile Include="Bootstrapper.py" />
+    <Compile Include="CountdownHelper.py" />
+    <Compile Include="DataFileHelper.py" />
+    <Compile Include="ImageSaveHelper.py" />
+    <Compile Include="Main.py" />
+    <Compile Include="OverlayManager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhotoBooth.py" />
+    <Compile Include="OverlayResolutionHelper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceLocator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UIStrings.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UsbHelper.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="startPhotoBooth.sh" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

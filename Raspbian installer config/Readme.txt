@@ -1,0 +1,1 @@
+This is the configuration for FooDeas/raspberrypi-ua-netinst (https://github.com/FooDeas/raspberrypi-ua-netinst).

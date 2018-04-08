@@ -1,0 +1,3 @@
+#!/bin/sh
+printf "#!/bin/sh\nsu -l root -c \"exec /root/post-install.sh\"\nexit 0\n" > /rootfs/etc/rc.local
+chmod +x /rootfs/etc/rc.local

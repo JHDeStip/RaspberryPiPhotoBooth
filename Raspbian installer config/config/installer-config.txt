@@ -1,0 +1,44 @@
+#Debian version
+release=stretch
+
+#Login
+rootpw=PASSWORD
+
+#Network
+hostname=photobooth
+
+#Storage
+bootsize=+64M
+boot_volume_label=PhotoBooth
+rootfstype=ext4
+rootfs_install_mount_options='noatime,data=writeback,nobarrier,noinit_itable'
+rootfs_mount_options='errors=remount-ro,noatime'
+
+#Time, locale and keyboard
+timezone=Europe/Brussels
+locales=en_US.UTF-8
+system_default_locale=en_US.UTF-8
+keyboard_layout=be
+
+#GPU and monitor
+gpu_mem=128
+console_blank=0
+hdmi_type=monitor
+hdmi_monitor_res=1280x1024
+hdmi_disable_overscan=1
+
+#Camera
+camera_enable=1
+camera_disable_led=1
+
+#Packages
+packages=rpi-update,libfreetype6-dev,python3.5,python3-pil,python3-rpi.gpio,python3-picamera
+
+#Misc
+disable_raspberries=1
+disable_splash=1
+quiet_boot=1
+cleanup=1
+cleanup_logfiles=1
+
+final_action=reboot
