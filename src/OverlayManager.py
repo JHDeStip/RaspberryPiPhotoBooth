@@ -9,6 +9,8 @@ import textwrap
 
 class OverlayManager(object):
     _camera = None
+    _overlayResolutionHelper = None
+    _filterOverlayHelper = None
     _overlayDimensions = None
     _currentDir = os.path.split(os.path.abspath(__file__))[0]
     _countdownTime = 0
@@ -17,10 +19,11 @@ class OverlayManager(object):
     _confirmationButtonsOverlay = None
     _busyOverlay = None
     _countDownOverlays = []
-    
 
-    def __init__(self, overlayResolutionHelper, camera, countdownTime):
+    def __init__(self, camera, overlayResolutionHelper, filterOverlayHelper, countdownTime):
         self._camera = camera
+        self._overlayResolutionHelper = overlayResolutionHelper
+        self._filterOverlayHelper = filterOverlayHelper
         self._overlayDimensions = overlayResolutionHelper.overlayResolution
         self._countdownTime = countdownTime
 
@@ -54,28 +57,11 @@ class OverlayManager(object):
 
 
     def showConfirmationImageOverlay(self, confirmationImage):
-        width = self._overlayDimensions[0]
-        height = self._overlayDimensions[1]
-        imageRatio = float(confirmationImage.size[0]) / confirmationImage.size[1]
-        overlayRatio = float(self._overlayDimensions[0]) / self._overlayDimensions[1]
-        cropLeftRight = 0
-        cropTopBottom = 0
+        resizedImage = self._overlayResolutionHelper.resizeImageForOverlay(confirmationImage)
         
-        if imageRatio > overlayRatio:
-            width = int(height * imageRatio)
-            if width % 2 != 0:
-                width += 1
-            cropLeftRight = int((width - self._overlayDimensions[0]) / 2)
-        elif imageRatio < overlayRatio:
-            height = int(width / imageRatio)
-            if height % 2 != 0:
-                height += 1
-            cropTopBottom = int((height - self._overlayDimensions[1]) / 2)
-
-        scaledImage = confirmationImage.resize((width, height), Image.NEAREST)
-        scaledImage = scaledImage.crop((cropLeftRight, cropTopBottom , width - cropLeftRight, height - cropTopBottom))
-        self._camera.setOverlay(scaledImage, False, 1)
-        self._camera.setOverlay(self._confirmationButtonsOverlay, False, 2)
+        self._camera.setOverlay(resizedImage, False, 1)
+        self._camera.setOverlay(self._filterOverlayHelper.previewFilterOverlay, False, 2)
+        self._camera.setOverlay(self._confirmationButtonsOverlay, False, 3)
 
 
     def removeAllOverlays(self):

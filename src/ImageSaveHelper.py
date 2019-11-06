@@ -23,6 +23,7 @@ class ImageSaveHelper(object):
         self._mirrorSavedPhoto = mirrorSavedPhoto
         self._lastAcceptedPhotoNumber, self._lastDiscartedPhotoNumber = self._dataFileHelper.getLastPhotoNumbers()
 
+
     def saveImage(self, image, accepted):
         try:
             if self._mirrorSavedPhoto:

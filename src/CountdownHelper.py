@@ -9,6 +9,7 @@ class CountdownHelper(object):
         self._overlayManager = overlayManager
         self._countdownTime = countdownTime
 
+
     def startCountdown(self):
         currentCountdownTime = self._countdownTime
         while (currentCountdownTime > 0):

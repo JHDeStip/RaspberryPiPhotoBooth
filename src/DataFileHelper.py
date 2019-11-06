@@ -6,6 +6,7 @@ class DataFileHelper(object):
     def __init__(self, dataFile):
         self._dataFilePath = os.path.join(os.path.split(os.path.abspath(__file__))[0], dataFile)
 
+
     def getLastPhotoNumbers(self):
         file = None
         lastAcceptedPhotoNumber = 0
@@ -22,6 +23,7 @@ class DataFileHelper(object):
                     file.close()
 
         return lastAcceptedPhotoNumber, lastDiscartedPhotoNumber
+
 
     def saveLastPhotoNumbers(self, lastPhotoNumbers):
         file = None

@@ -1,5 +1,6 @@
 import Constants
 from picamera import PiResolution
+from PIL import Image
 
 class OverlayResolutionHelper(object):
     _SUPPORTED_HDMI_GROUP = "2"
@@ -102,6 +103,7 @@ class OverlayResolutionHelper(object):
         paddedResolution = PiResolution(screenResolution[0], screenResolution[1]).pad(32, 16)
         self.overlayResolution = (paddedResolution[0], paddedResolution[1])
 
+
     def readScreenResolution(self):
         try:
             with open(Constants.PI_BOOT_CONFIG_FILE, "r") as config:
@@ -127,3 +129,35 @@ class OverlayResolutionHelper(object):
                 return self._RESOLUTIONS[mode]
         except:
             return Constants.DEFAULT_SCREEN_RESOLUTION
+
+
+    def resizeImageForOverlay(self, image, fast = True):
+        width = self.overlayResolution[0]
+        height = self.overlayResolution[1]
+        imageRatio = float(image.size[0]) / image.size[1]
+        overlayRatio = float(self.overlayResolution[0]) / self.overlayResolution[1]
+        cropLeftRight = 0
+        cropTopBottom = 0
+        
+        if imageRatio > overlayRatio:
+            width = int(height * imageRatio)
+            if width % 2 != 0:
+                width += 1
+            cropLeftRight = int((width - self.overlayResolution[0]) / 2)
+        elif imageRatio < overlayRatio:
+            height = int(width / imageRatio)
+            if height % 2 != 0:
+                height += 1
+            cropTopBottom = int((height - self.overlayResolution[1]) / 2)
+
+        scaleMode = None
+        if fast:
+            algorithm = Image.NEAREST
+        else:
+            algorithm = Image.HAMMING
+
+
+        resizedImage = image.resize((width, height), algorithm)
+        resizedImage = resizedImage.crop((cropLeftRight, cropTopBottom , width - cropLeftRight, height - cropTopBottom))
+
+        return resizedImage

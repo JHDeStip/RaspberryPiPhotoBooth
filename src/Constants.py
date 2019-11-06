@@ -1,6 +1,7 @@
 TEXT_FONT_FILE = "arial.ttf"
 THUMBS_FONT_FILE = "ThumbsUpDown.ttf"
-PHOTOS_FOLDER = "/photos"
+OVERLAY_FILE = "Overlay.png"
+USB_MOUNT_DIR = "/usbMount"
 DATA_FILE = "photobooth.dat"
 TIME_FORMAT = "%Y-%m-%d_%H-%M-%S"
 TRESHOLD_TIME = "2000-01-01_00-00-00"

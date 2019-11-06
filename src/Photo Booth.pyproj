@@ -27,6 +27,7 @@
     </Compile>
     <Compile Include="Constants.py" />
     <Compile Include="Bootstrapper.py" />
+    <Compile Include="FilterOverlayHelper.py" />
     <Compile Include="CountdownHelper.py" />
     <Compile Include="DataFileHelper.py" />
     <Compile Include="ImageSaveHelper.py" />
